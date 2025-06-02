@@ -1,0 +1,18 @@
+{
+    "description": "Backend module for the Neos CMS to show news about, e.g. a new Neos Version.",
+    "type": "neos-package",
+    "name": "flowpack/neos-whatsnewdashboard",
+    "require": {
+        "neos/flow": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Flowpack\\Neos\\WhatsNewDashboard\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Flowpack.Neos.WhatsNewDashboard"
+        }
+    }
+}
