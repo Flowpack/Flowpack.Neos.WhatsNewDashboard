@@ -1,0 +1,3 @@
+prototype(Flowpack.Neos.WhatsNewDashboard:Backend.Page.DefaultPage) < prototype(Neos.Fusion:Component) {
+    renderer = ${props.body}
+}

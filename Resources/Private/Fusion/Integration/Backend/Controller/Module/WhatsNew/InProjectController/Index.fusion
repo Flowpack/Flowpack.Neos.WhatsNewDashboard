@@ -1,0 +1,24 @@
+Flowpack.Neos.WhatsNewDashboard.Module.WhatsNew.InProjectController.index = Flowpack.Neos.WhatsNewDashboard:Backend.Page.DefaultPage {
+    renderer = Neos.Fusion:Case {
+        urlIsSet {
+            condition = ${sourceUrl}
+            renderer = afx`
+                <div class="neos-content neos-container-fluid">
+                    <div class="neos-row-fluid">
+                        <iframe src={sourceUrl} onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight + 38 + "px";}(this));' style="width: 100%;"></iframe>
+                    </div>
+                </div>
+            `
+        }
+        default {
+            condition = true
+            renderer = afx`
+                <div class="neos-content neos-container-fluid">
+                    <div class="neos-row-fluid">
+                        <p>Source url was not set.</p>
+                    </div>
+                </div>
+            `
+        }
+    }
+}

@@ -1,0 +1,27 @@
+#                                                                        #
+# Security policy for the What's new Dashboard package                   #
+#                                                                        #
+
+privilegeTargets:
+  #
+  # General access to Neos Backend modules
+  #
+  'Neos\Neos\Security\Authorization\Privilege\ModulePrivilege':
+    'Flowpack.Neos.WhatsNewDashboard:Backend.Module.WhatsNew':
+      label: General access to the whats new module section
+      matcher: 'whats-new'
+    'Flowpack.Neos.WhatsNewDashboard:Backend.Module.WhatsNew.InProject':
+      label: General access to the news in your project module
+      matcher: 'whats-new/in-project'
+
+roles:
+  'Neos.Neos:AbstractEditor':
+    privileges:
+      -
+        privilegeTarget: 'Flowpack.Neos.WhatsNewDashboard:Backend.Module.WhatsNew'
+        permission: GRANT
+      -
+        privilegeTarget: 'Flowpack.Neos.WhatsNewDashboard:Backend.Module.WhatsNew.InProject'
+        permission: GRANT
+
+

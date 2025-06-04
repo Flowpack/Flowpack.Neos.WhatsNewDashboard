@@ -1,0 +1,19 @@
+Neos:
+  Neos:
+    modules:
+      'whats-new':
+        label: "What's new"
+        controller: Flowpack\Neos\WhatsNewDashboard\Controller\Module\WhatsNewController
+        description: "See the news related to Neos."
+        icon: fas fa-newspaper
+        mainStylesheet: 'Lite'
+        menuHelper: 'Neos\Neos\ViewHelpers\Backend\MenuHelper'
+        submodules:
+          'in-project':
+            label: In your project
+            controller: Flowpack\Neos\WhatsNewDashboard\Controller\Module\WhatsNew\InProjectController
+            description: What's new in your neos project
+            icon: fas fa-project-diagram
+            mainStylesheet: 'Lite'
+
+

@@ -1,0 +1,25 @@
+Flowpack.Neos.WhatsNewDashboard.Module.WhatsNewController.index = Flowpack.Neos.WhatsNewDashboard:Backend.Page.DefaultPage {
+    renderer = afx`
+        <div class="neos-content neos-indented neos-fluid-container">
+            <div class="neos-row-fluid">
+                <Neos.Fusion:Loop items={submodules}>
+                    <div class="neos-span4">
+                        <div class="widget">
+                            <div class="widget-header">
+                                <i class={item.icon + " neos-pull-left"}></i>
+                                <h3>
+                                    <a href={"/neos/whats-new/" + itemKey}>
+                                        {item.label}
+                                    </a>
+                                </h3>
+                            </div>
+                            <div class="widget-body">
+                                <p>{item.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                </Neos.Fusion:Loop>
+            </div>
+        </div>
+    `
+}
