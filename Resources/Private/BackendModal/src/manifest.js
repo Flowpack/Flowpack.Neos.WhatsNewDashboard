@@ -1,6 +1,6 @@
 import manifest from '@neos-project/neos-ui-extensibility';
 
-import WhatsNewNotificationModal from './WhatsNewNotificationModal'
+import WhatsNewNotificationModal from './Components/WhatsNewNotificationModal'
 
 manifest('Flowpack.Neos.WhatsNewDashboard:whatsNewNotificationModal', {}, globalRegistry => {
     const containerRegistry = globalRegistry.get('containers');

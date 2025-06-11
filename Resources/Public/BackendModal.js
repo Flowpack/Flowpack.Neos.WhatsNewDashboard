@@ -1,3 +1,4 @@
+"use strict";
 (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
@@ -29,7 +30,7 @@
   ));
 
   // node_modules/@neos-project/neos-ui-extensibility/dist/readFromConsumerApi.js
-  function readFromConsumerApi(key) {
+  function readFromConsumerApi2(key) {
     return (...args) => {
       if (window["@Neos:HostPluginAPI"] && window["@Neos:HostPluginAPI"][`@${key}`]) {
         return window["@Neos:HostPluginAPI"][`@${key}`](...args);
@@ -46,19 +47,37 @@
   var require_react = __commonJS({
     "node_modules/@neos-project/neos-ui-extensibility/dist/shims/vendor/react/index.js"(exports, module) {
       init_readFromConsumerApi();
-      module.exports = readFromConsumerApi("vendor")().React;
+      module.exports = readFromConsumerApi2("vendor")().React;
     }
   });
 
-  // node_modules/@neos-project/neos-ui-extensibility/dist/index.js
-  init_readFromConsumerApi();
+  // BackendModal/node_modules/@neos-project/neos-ui-extensibility/dist/readFromConsumerApi.js
+  function readFromConsumerApi(key) {
+    return (...args) => {
+      if (window["@Neos:HostPluginAPI"] && window["@Neos:HostPluginAPI"][`@${key}`]) {
+        return window["@Neos:HostPluginAPI"][`@${key}`](...args);
+      }
+      throw new Error("You are trying to read from a consumer api that hasn't been initialized yet!");
+    };
+  }
+
+  // BackendModal/node_modules/@neos-project/neos-ui-extensibility/dist/index.js
   var dist_default = readFromConsumerApi("manifest");
 
-  // src/WhatsNewNotificationModal.tsx
+  // BackendModal/src/Components/WhatsNewNotificationModal.tsx
+  var import_react2 = __toESM(require_react());
+
+  // BackendModal/src/Components/Modal.tsx
   var import_react = __toESM(require_react());
+  var Modal = ({ closeModal }) => {
+    return /* @__PURE__ */ import_react.default.createElement("div", { className: "bg-black", onClick: closeModal }, /* @__PURE__ */ import_react.default.createElement("p", null, "Testingn Blub"));
+  };
+  var Modal_default = import_react.default.memo(Modal);
+
+  // BackendModal/src/Components/WhatsNewNotificationModal.tsx
   var WhatsNewNotificationModal = () => {
-    const [showModal, setShowModal] = (0, import_react.useState)(false);
-    const [apiData, setApiData] = (0, import_react.useState)(null);
+    const [showModal, setShowModal] = (0, import_react2.useState)(false);
+    const [apiData, setApiData] = (0, import_react2.useState)(null);
     const fetchData = async () => {
       try {
         const response = await fetch("/api/whats-new/in-project");
@@ -68,7 +87,7 @@
         console.error("Error fetching API data:", error);
       }
     };
-    (0, import_react.useEffect)(() => {
+    (0, import_react2.useEffect)(() => {
       const cookies = Object.fromEntries(document.cookie.split("; ").map((c) => c.split("=")));
       !apiData && fetchData();
       if (!cookies.whatsNewNoteClosedTimestamp || apiData && cookies.whatsNewNoteClosedTimestamp < apiData.clientNotificationTimestamp) {
@@ -81,11 +100,11 @@
       document.cookie = `whatsNewNoteClosedTimestamp=${Date.now()}; expires=${expires.toUTCString()}; path=/`;
       setShowModal(false);
     };
-    return showModal ? /* @__PURE__ */ import_react.default.createElement("div", { style: { background: "#000" }, onClick: closeModal }, /* @__PURE__ */ import_react.default.createElement("p", null, "Testingn Blub")) : null;
+    return showModal ? /* @__PURE__ */ import_react2.default.createElement(Modal_default, { closeModal }) : null;
   };
-  var WhatsNewNotificationModal_default = WhatsNewNotificationModal;
+  var WhatsNewNotificationModal_default = import_react2.default.memo(WhatsNewNotificationModal);
 
-  // src/manifest.js
+  // BackendModal/src/manifest.js
   dist_default("Flowpack.Neos.WhatsNewDashboard:whatsNewNotificationModal", {}, (globalRegistry) => {
     const containerRegistry = globalRegistry.get("containers");
     containerRegistry.set("Modals/WhatsNewNotificationModal", WhatsNewNotificationModal_default);

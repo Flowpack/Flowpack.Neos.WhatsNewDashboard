@@ -1,9 +1,13 @@
-import React, { PureComponent, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import Modal from './Modal'
 
+type ApiData = {
+    clientNotificationTimestamp: string
+}
 
-const WhatsNewNotificationModal: PureComponent = () => {
-    const [showModal, setShowModal] = useState(false)
-    const [apiData, setApiData] = useState(null);
+const WhatsNewNotificationModal = () => {
+    const [showModal, setShowModal] = useState<boolean>(false)
+    const [apiData, setApiData] = useState<ApiData | null>(null);
 
     // Fetch data from an API
     const fetchData = async () => {
@@ -35,12 +39,8 @@ const WhatsNewNotificationModal: PureComponent = () => {
     }
 
     return showModal
-        ? (
-            <div style={{background: '#000'}} onClick={closeModal}>
-                <p>Testingn Blub</p>
-            </div>
-        )
+        ? <Modal closeModal={closeModal} />
         : null
 }
 
-export default WhatsNewNotificationModal
+export default React.memo(WhatsNewNotificationModal)

@@ -7,4 +7,7 @@ Neos:
       resources:
         javascript:
           Flowpack.Neos.WhatsNewDashboard:BackendModal:
-            resource: 'resource://Flowpack.Neos.WhatsNewDashboard/Public/JavaScript/BackendModal.js'
+            resource: 'resource://Flowpack.Neos.WhatsNewDashboard/Public/BackendModal.js'
+        stylesheets:
+          Flowpack.Neos.WhatsNewDashboard:BackendModal:
+            resource: 'resource://Flowpack.Neos.WhatsNewDashboard/Public/main.css'
