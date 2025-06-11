@@ -1,3 +1,46 @@
-body {
-    background: green;
+$color__primary--main: #00aeef;
+$color__primary--dark: #0089bc;
+$color__white: #fff;
+$color__black: #222;
+$color__grey--main: #323232;
+$color__grey--dark: #979797;
+$color__error: #d8d8d8;
+
+@font-face {
+    font-family: 'Bricolage Grotesque';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/_Resources/Static/Packages/Flowpack.Neos.WhatsNewDashboard.Editorial/Fonts/BricolageGrotesque-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bricolage Grotesque';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/_Resources/Static/Packages/Flowpack.Neos.WhatsNewDashboard.Editorial/Fonts/BricolageGrotesque-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bricolage Grotesque';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url('/_Resources/Static/Packages/Flowpack.Neos.WhatsNewDashboard.Editorial/Fonts/BricolageGrotesque-ExtraBold.ttf') format('truetype');
+}
+
+.whats-new__dialog [class*="dialog__title"] {
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.dialog__content {
+    padding: 16px 40px 16px 16px;
+}
+
+.dialog__content p {
+    font-family: 'Bricolage Grotesque', Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    line-height: 1.2;
 }

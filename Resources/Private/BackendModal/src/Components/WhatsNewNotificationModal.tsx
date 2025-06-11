@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Modal from './Modal'
+//@ts-ignore
+import { Dialog, Button } from '@neos-project/react-ui-components'
 
 type ApiData = {
     clientNotificationTimestamp: string
@@ -38,8 +39,37 @@ const WhatsNewNotificationModal = () => {
         setShowModal(false)
     }
 
+    const renderClose = () => {
+        return (
+            <Button
+                id="neos-DiscardDialog-Cancel"
+                key="cancel"
+                style="lighter"
+                hoverStyle="brand"
+                onClick={closeModal}
+            >
+                Close
+            </Button>
+        )
+    }
+
     return showModal
-        ? <Modal closeModal={closeModal} />
+        ? (
+            <>
+                <Dialog
+                    isOpen={showModal}
+                    title="New features"
+                    actions={[renderClose()]}
+                    type="success"
+                    className="whats-new__dialog"
+                >
+                    <div className='dialog__content'>
+                        <p>There are new features available in your project.</p>
+                        <p>You can check the <strong>What's new section</strong> in the menu for more details.</p>
+                    </div>
+                </Dialog>
+            </>
+        )
         : null
 }
 

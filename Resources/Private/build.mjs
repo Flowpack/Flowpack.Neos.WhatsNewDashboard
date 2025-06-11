@@ -56,7 +56,7 @@ if (isWatchMode) {
                 '.json': 'json'
             },
             minify: false,
-            external: ['react'],
+            external: ['react', '/_Resources/*'],
             alias: extensibilityMap
         })
         .then(ctx => ctx.watch())
@@ -80,7 +80,7 @@ if (isWatchMode) {
                 '.json': 'json'
             },
             minify: false,
-            external: ['react'],
+            external: ['react', '/_Resources/*'],
             alias: extensibilityMap
         })
         .catch(() => process.exit(1));

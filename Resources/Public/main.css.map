@@ -1,8 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../main.scss"],
-  "sourceRoot": "./BackendModal/src",
-  "sourcesContent": ["body {\n    background: green;\n}\n"],
-  "mappings": ";AAAA;AACI,cAAA;;",
-  "names": []
-}

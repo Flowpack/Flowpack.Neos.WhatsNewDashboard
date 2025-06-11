@@ -51,6 +51,14 @@
     }
   });
 
+  // node_modules/@neos-project/neos-ui-extensibility/dist/shims/neosProjectPackages/react-ui-components/index.js
+  var require_react_ui_components = __commonJS({
+    "node_modules/@neos-project/neos-ui-extensibility/dist/shims/neosProjectPackages/react-ui-components/index.js"(exports, module) {
+      init_readFromConsumerApi();
+      module.exports = readFromConsumerApi2("NeosProjectPackages")().ReactUiComponents;
+    }
+  });
+
   // BackendModal/node_modules/@neos-project/neos-ui-extensibility/dist/readFromConsumerApi.js
   function readFromConsumerApi(key) {
     return (...args) => {
@@ -65,19 +73,11 @@
   var dist_default = readFromConsumerApi("manifest");
 
   // BackendModal/src/Components/WhatsNewNotificationModal.tsx
-  var import_react2 = __toESM(require_react());
-
-  // BackendModal/src/Components/Modal.tsx
   var import_react = __toESM(require_react());
-  var Modal = ({ closeModal }) => {
-    return /* @__PURE__ */ import_react.default.createElement("div", { className: "bg-black", onClick: closeModal }, /* @__PURE__ */ import_react.default.createElement("p", null, "Testingn Blub"));
-  };
-  var Modal_default = import_react.default.memo(Modal);
-
-  // BackendModal/src/Components/WhatsNewNotificationModal.tsx
+  var import_react_ui_components = __toESM(require_react_ui_components());
   var WhatsNewNotificationModal = () => {
-    const [showModal, setShowModal] = (0, import_react2.useState)(false);
-    const [apiData, setApiData] = (0, import_react2.useState)(null);
+    const [showModal, setShowModal] = (0, import_react.useState)(false);
+    const [apiData, setApiData] = (0, import_react.useState)(null);
     const fetchData = async () => {
       try {
         const response = await fetch("/api/whats-new/in-project");
@@ -87,7 +87,7 @@
         console.error("Error fetching API data:", error);
       }
     };
-    (0, import_react2.useEffect)(() => {
+    (0, import_react.useEffect)(() => {
       const cookies = Object.fromEntries(document.cookie.split("; ").map((c) => c.split("=")));
       !apiData && fetchData();
       if (!cookies.whatsNewNoteClosedTimestamp || apiData && cookies.whatsNewNoteClosedTimestamp < apiData.clientNotificationTimestamp) {
@@ -100,9 +100,32 @@
       document.cookie = `whatsNewNoteClosedTimestamp=${Date.now()}; expires=${expires.toUTCString()}; path=/`;
       setShowModal(false);
     };
-    return showModal ? /* @__PURE__ */ import_react2.default.createElement(Modal_default, { closeModal }) : null;
+    const renderClose = () => {
+      return /* @__PURE__ */ import_react.default.createElement(
+        import_react_ui_components.Button,
+        {
+          id: "neos-DiscardDialog-Cancel",
+          key: "cancel",
+          style: "lighter",
+          hoverStyle: "brand",
+          onClick: closeModal
+        },
+        "Close"
+      );
+    };
+    return showModal ? /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement(
+      import_react_ui_components.Dialog,
+      {
+        isOpen: showModal,
+        title: "New features",
+        actions: [renderClose()],
+        type: "success",
+        className: "whats-new__dialog"
+      },
+      /* @__PURE__ */ import_react.default.createElement("div", { className: "dialog__content" }, /* @__PURE__ */ import_react.default.createElement("p", null, "There are new features available in your project."), /* @__PURE__ */ import_react.default.createElement("p", null, "You can check the ", /* @__PURE__ */ import_react.default.createElement("strong", null, "What's new section"), " in the menu for more details."))
+    )) : null;
   };
-  var WhatsNewNotificationModal_default = import_react2.default.memo(WhatsNewNotificationModal);
+  var WhatsNewNotificationModal_default = import_react.default.memo(WhatsNewNotificationModal);
 
   // BackendModal/src/manifest.js
   dist_default("Flowpack.Neos.WhatsNewDashboard:whatsNewNotificationModal", {}, (globalRegistry) => {
