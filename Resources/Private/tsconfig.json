@@ -22,5 +22,5 @@
     "forceConsistentCasingInFileNames": true,
     "noUncheckedSideEffectImports": true,
   },
-  "include": ["./BackendModal/", "./Fusion/"]
+  "include": ["./main.ts", "./BackendModal/", "./Fusion/"]
 }

@@ -10,4 +10,4 @@ Neos:
             resource: 'resource://Flowpack.Neos.WhatsNewDashboard/Public/BackendModal.js'
         stylesheets:
           Flowpack.Neos.WhatsNewDashboard:BackendModal:
-            resource: 'resource://Flowpack.Neos.WhatsNewDashboard/Public/main.css'
+            resource: 'resource://Flowpack.Neos.WhatsNewDashboard/Public/styles.css'

@@ -42,7 +42,8 @@ if (isWatchMode) {
         .context({
             entryPoints: {
                 BackendModal: './BackendModal/src/index.js',
-                main: './main.scss'
+                main: './main.ts',
+                styles: './main.scss'
             },
             sourceRoot: './BackendModal/src',
             target: ['esnext'],
@@ -66,7 +67,8 @@ if (isWatchMode) {
         .build({
             entryPoints: {
                 BackendModal: './BackendModal/src/index.js',
-                main: './main.scss'
+                main: './main.ts',
+                styles: './main.scss'
             },
             sourceRoot: './BackendModal/src',
             target: ['esnext'],

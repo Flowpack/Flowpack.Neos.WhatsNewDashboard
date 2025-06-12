@@ -15,5 +15,8 @@ Neos:
             description: What's new in your neos project
             icon: fas fa-project-diagram
             mainStylesheet: 'Lite'
+            additionalResources:
+              javaScripts:
+                Flowpack.Neos.WhatsNewDashboard:Main: 'resource://Flowpack.Neos.WhatsNewDashboard/Public/main.js'
 
 
