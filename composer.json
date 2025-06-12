@@ -1,9 +1,22 @@
 {
-    "description": "Backend module for the Neos CMS to show news about, e.g. a new Neos Version.",
-    "type": "neos-package",
     "name": "flowpack/neos-whatsnewdashboard",
+    "type": "neos-package",
+    "description": "Backend module for the Neos CMS to show news about, e.g. a new Neos Version or your project.",
+    "homepage": "https://github.com/sandstorm/Neos.WhatsNewDashboard",
+    "keywords": [
+        "Neos",
+        "Flow",
+        "Dashboard",
+        "News",
+        "BackendModule"
+    ],
     "require": {
         "neos/flow": "*"
+    },
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/sandstorm/Neos.WhatsNewDashboard/issues",
+        "source": "https://github.com/sandstorm/Neos.WhatsNewDashboard"
     },
     "autoload": {
         "psr-4": {
@@ -13,6 +26,11 @@
     "extra": {
         "neos": {
             "package-key": "Flowpack.Neos.WhatsNewDashboard"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "neos/composer-plugin": true
         }
     }
 }
