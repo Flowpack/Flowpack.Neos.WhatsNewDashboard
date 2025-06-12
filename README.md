@@ -40,3 +40,17 @@ Flowpack:
     WhatsNewDashboard:
       inProjectSourceUrl: 'https://my-page.de/whats-new' # example url
 ```
+
+### Flowpack.ContentSecurityPolicy package
+
+When you have the `Flowpack.ContentSecurityPolicy` installed and your source neos instance is not your project, then you have to add the source origin in your `ContentSecurityPolicy` config:
+
+```yaml
+Flowpack:
+  ContentSecurityPolicy:
+    content-security-policy:
+      custom-backend:
+        frame-src:
+          - 'https://my-page.de/'
+```
+
