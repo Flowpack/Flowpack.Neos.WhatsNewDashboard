@@ -8,7 +8,6 @@
       if (iFrame.contentWindow && iFrame.contentWindow.document) {
         iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + 38 + "px";
       }
-      console.log(iFrame.style.height);
     };
     whatsNewIFrame.addEventListener("load", () => setIFrameHeight(whatsNewIFrame));
     window.addEventListener("resize", () => setIFrameHeight(whatsNewIFrame));

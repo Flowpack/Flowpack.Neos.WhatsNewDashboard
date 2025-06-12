@@ -44,3 +44,15 @@ $color__error: #d8d8d8;
     font-size: 20px;
     line-height: 1.2;
 }
+
+.dialog__content a {
+    color: $color__primary--main;
+    font-weight: 700;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $color__primary--dark;
+    }
+}

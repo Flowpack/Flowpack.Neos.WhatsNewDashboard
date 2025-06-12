@@ -53,6 +53,14 @@ const WhatsNewNotificationModal = () => {
         )
     }
 
+    const handleLinkClick = (e: any) => {
+        e.preventDefault() // stop default navigation
+        closeModal()
+        setTimeout(() => {
+            window.location.href = `${window.location.origin}/neos/whats-new/in-project`
+        }, 100); // delay to allow React state to update
+    }
+
     return showModal
         ? (
             <>
@@ -65,7 +73,10 @@ const WhatsNewNotificationModal = () => {
                 >
                     <div className='dialog__content'>
                         <p>There are new features available in your project.</p>
-                        <p>You can check the <strong>What's new section</strong> in the menu for more details.</p>
+                        <p>You can check the <strong>What's new &gt; in project section</strong> in the menu for more details.</p>
+                        <p>
+                            <a href="#" onClick={handleLinkClick}>Go to 'Whats new in your project'</a>
+                        </p>
                     </div>
                 </Dialog>
             </>

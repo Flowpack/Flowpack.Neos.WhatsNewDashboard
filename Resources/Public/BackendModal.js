@@ -113,6 +113,13 @@
         "Close"
       );
     };
+    const handleLinkClick = (e) => {
+      e.preventDefault();
+      closeModal();
+      setTimeout(() => {
+        window.location.href = `${window.location.origin}/neos/whats-new/in-project`;
+      }, 100);
+    };
     return showModal ? /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement(
       import_react_ui_components.Dialog,
       {
@@ -122,7 +129,7 @@
         type: "success",
         className: "whats-new__dialog"
       },
-      /* @__PURE__ */ import_react.default.createElement("div", { className: "dialog__content" }, /* @__PURE__ */ import_react.default.createElement("p", null, "There are new features available in your project."), /* @__PURE__ */ import_react.default.createElement("p", null, "You can check the ", /* @__PURE__ */ import_react.default.createElement("strong", null, "What's new section"), " in the menu for more details."))
+      /* @__PURE__ */ import_react.default.createElement("div", { className: "dialog__content" }, /* @__PURE__ */ import_react.default.createElement("p", null, "There are new features available in your project."), /* @__PURE__ */ import_react.default.createElement("p", null, "You can check the ", /* @__PURE__ */ import_react.default.createElement("strong", null, "What's new > in project section"), " in the menu for more details."), /* @__PURE__ */ import_react.default.createElement("p", null, /* @__PURE__ */ import_react.default.createElement("a", { href: "#", onClick: handleLinkClick }, "Go to 'Whats new in your project'")))
     )) : null;
   };
   var WhatsNewNotificationModal_default = import_react.default.memo(WhatsNewNotificationModal);

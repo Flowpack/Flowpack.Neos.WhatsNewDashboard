@@ -36,3 +36,13 @@
   font-size: 20px;
   line-height: 1.2;
 }
+.dialog__content a {
+  color: #00aeef;
+  font-weight: 700;
+  text-decoration: underline;
+}
+.dialog__content a:hover,
+.dialog__content a:focus,
+.dialog__content a:active {
+  color: #0089bc;
+}
