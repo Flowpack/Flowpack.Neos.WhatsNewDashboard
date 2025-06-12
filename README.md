@@ -18,7 +18,7 @@ As long as it is not published on packagist:
     ...
 },
 ```
-* require package in your `composer.json`:
+* require package in your `composer.json` with `composer require flowpack/neos-whatsnewdashboard:@dev`, which should result in:
 ```json
 "require": {
     ...,
@@ -28,7 +28,7 @@ As long as it is not published on packagist:
 ```
 
 After publishing on packagist:
-* install via composer with `composer require flowpack/neos-whatsneweditor-inmyproject`
+* install via composer with `composer require flowpack/neos-whatsnewdashboard`
 
 ### Usage
 
