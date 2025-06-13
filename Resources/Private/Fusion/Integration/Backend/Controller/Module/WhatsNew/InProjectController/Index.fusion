@@ -5,7 +5,7 @@ Flowpack.Neos.WhatsNewDashboard.Module.WhatsNew.InProjectController.index = Flow
             renderer = afx`
                 <div class="neos-content neos-container-fluid">
                     <div class="neos-row-fluid">
-                        <iframe id="whatsNewIFrame" src={sourceUrl} style="width: 100%;"></iframe>
+                        <iframe id="whatsNewIFrame" src={sourceUrl} style="width: 100%; min-height: calc(100vh - 181px);"></iframe>
                     </div>
                 </div>
             `
