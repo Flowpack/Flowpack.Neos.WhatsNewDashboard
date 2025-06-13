@@ -1,6 +1,11 @@
 # Neos.WhatsNewDashboard
-Backend module for the Neos CMS to show news about, e.g. a new Neos Version or new features in your project. 
-This packages needs a neos instance which has the [Neos.WhatsNewEditor.InMyProject](https://github.com/sandstorm/Neos.WhatsNewEditor.InMyProject) package installed and contains a news page with content. 
+The WhatsNewDashboard is a backend module that adds different news-pages to Neos CMS.
+Target audience are editors that work with Neos but do not have a technical background.
+
+The first implemented use case is a news stream about the website they are currently editing. The dev team will be able to maintain a neos document that communicates via text and images what has changed within the project, e.g. new fields in the inspector. 
+To do this, you will need to install a second package: [Neos.WhatsNewEditor.InMyProject](https://github.com/sandstorm/Neos.WhatsNewEditor.InMyProject) that contains nodetypes for said news page, its content and css styles.
+
+Further use cases could be an editor-centered changelog (what has changed in the UI between my last neos version to the current one?) or announcements about new Neos Versions by the Neos Core team.
 
 ## Integration
 
