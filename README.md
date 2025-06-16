@@ -11,33 +11,11 @@ Further use cases could be an editor-centered changelog (what has changed in the
 
 ### Installation
 
-As long as it is not published on packagist:
-* add github repo to your repositories in your `composer.json`:
-```json
-"repositories": {
-    ...
-    "neos-whatsnewdashboard": {
-        "type": "vcs",
-        "url": "https://github.com/sandstorm/Neos.WhatsNewDashboard"
-    },
-    ...
-},
-```
-* require package in your `composer.json` with `composer require flowpack/neos-whatsnewdashboard:@dev`, which should result in:
-```json
-"require": {
-    ...,
-    "flowpack/neos-whatsnewdashboard": "@dev",
-    ...
-}
-```
-
-After publishing on packagist:
-* install via composer with `composer require flowpack/neos-whatsnewdashboard`
+Install via composer with `composer require flowpack/neos-whatsnewdashboard`.
 
 ### Usage
 
-We assume you have either a neos instance which contains a news page created by the [Neos.WhatsNewEditor.InMyProject](https://github.com/sandstorm/Neos.WhatsNewEditor.InMyProject) package or such a a news page in your own instance. To show those news for your project add the `inProjectSourceUrl` to your `Settings.yaml` like this:
+We assume you have installed the [Neos.WhatsNewEditor.InMyProject](https://github.com/sandstorm/Neos.WhatsNewEditor.InMyProject) package in your neos instance and you have created a news page with this package. To show those news for your project add the `inProjectSourceUrl` to your `Settings.yaml` like this:
 
 ```yaml
 Flowpack:
@@ -46,16 +24,25 @@ Flowpack:
       inProjectSourceUrl: 'https://my-page.de/whats-new' # example url
 ```
 
-### Flowpack.ContentSecurityPolicy package
+HINT: For now it is not possible to show news which are created in another neos instance with another domain, but be plan to make this possible.
 
-When you have the `Flowpack.ContentSecurityPolicy` installed and your source neos instance is not your project, then you have to add the source origin in your `ContentSecurityPolicy` config:
+## Backend Module
 
-```yaml
-Flowpack:
-  ContentSecurityPolicy:
-    content-security-policy:
-      custom-backend:
-        frame-src:
-          - 'https://my-page.de/'
-```
+After installing this package you get a new entry in the menu:
+
+![Menu entry What's new](./docs/menuEntry.jpg)
+
+On the `What's new page` you have a tile for the `In your project` news.
+
+![What's new page](./docs/whatsNewBackendModule.jpg)
+
+You can see the news page you configured in the `Settings.yaml` on the `In your project` page.
+
+![In your project news](./docs/whatsNewInYourProjectBackendModule.jpg)
+
+## Info dialog
+
+When you updated your news page all backend users get an info dialog which notifies them that new news are available.
+
+![Info dialog](./docs/infoDialog.jpg)
 
