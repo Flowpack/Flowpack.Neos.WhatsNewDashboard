@@ -1,6 +1,6 @@
 # Neos.WhatsNewDashboard
 
-![E2E Tests](https://github.com/sandstorm/Neos.WhatsNewDashboard/actions/workflows/e2e.yml/badge.svg)
+![E2E Tests](https://github.com/Flowpack/Flowpack.Neos.WhatsNewDashboard/actions/workflows/e2e.yml/badge.svg)
 
 The WhatsNewDashboard is a backend module that adds different news-pages to Neos CMS.
 Target audience are editors that work with Neos but do not have a technical background.
