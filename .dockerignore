@@ -1,0 +1,11 @@
+.git/
+.idea/
+**/node_modules/
+vendor/
+Packages
+.github
+.claude
+composer.lock
+Tests/E2E/test-results/
+Tests/E2E/playwright-report/
+Tests/E2E/.features-gen/

@@ -2,7 +2,7 @@
     "name": "flowpack/neos-whatsnewdashboard",
     "type": "neos-package",
     "description": "Backend module for the Neos CMS to show news about, e.g. a new Neos Version or your project.",
-    "homepage": "https://github.com/sandstorm/Neos.WhatsNewDashboard",
+    "homepage": "https://github.com/Flowpack/Flowpack.Neos.WhatsNewDashboard",
     "keywords": [
         "Neos",
         "Flow",
@@ -15,8 +15,8 @@
     },
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/sandstorm/Neos.WhatsNewDashboard/issues",
-        "source": "https://github.com/sandstorm/Neos.WhatsNewDashboard"
+        "issues": "https://github.com/Flowpack/Flowpack.Neos.WhatsNewDashboard/issues",
+        "source": "https://github.com/Flowpack/Flowpack.Neos.WhatsNewDashboard"
     },
     "autoload": {
         "psr-4": {
