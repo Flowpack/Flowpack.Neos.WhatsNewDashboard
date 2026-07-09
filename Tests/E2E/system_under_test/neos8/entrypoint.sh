@@ -1,0 +1,35 @@
+#!/bin/bash
+set -eou pipefail
+
+# Register local path repository and require local package
+# The code will be mounted into the container by docker-compose, so we can use it as a path repository.
+# The companion package flowpack/neos-whatsneweditor-inmyproject provides the
+# /api/whats-new/in-project endpoint and the WhatsNewDashboardPage node type;
+# version ^1.0 is the Neos 8 compatible line.
+composer config repositories.whatsnew-dashboard \
+  '{"type":"path","url":"/app/DistributionPackages/Flowpack.Neos.WhatsNewDashboard","options":{"symlink":true}}' \
+    && composer require --with-all-dependencies \
+      flowpack/neos-whatsnewdashboard:@dev \
+      flowpack/neos-whatsneweditor-inmyproject:^1.0
+
+echo "Waiting for database..."
+until mariadb -h"${DB_NEOS_HOST}" -P"${DB_NEOS_PORT}" -u"${DB_NEOS_USER}" -p"${DB_NEOS_PASSWORD}" -D"${DB_NEOS_DATABASE}" --disable-ssl --silent -e "SELECT 1;" 1>/dev/null 2>/dev/null; do
+    sleep 2
+done
+echo "Database is ready."
+
+./flow flow:cache:flush
+
+./flow doctrine:migrate
+
+yes y | ./flow resource:clean || true
+
+# Make the boot idempotent: the DB lives in a persistent named volume, so re-importing the demo
+# site on a re-boot would fail/duplicate. Prune first — a harmless no-op on a fresh DB.
+./flow site:prune --confirmation true || true
+
+./flow site:import --package-key Neos.Demo
+
+./flow resource:publish --collection static
+
+frankenphp run --config /etc/frankenphp/Caddyfile

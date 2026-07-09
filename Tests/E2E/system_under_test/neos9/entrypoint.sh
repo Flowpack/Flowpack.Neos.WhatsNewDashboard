@@ -1,0 +1,40 @@
+#!/bin/bash
+set -eou pipefail
+
+# Register local path repository and require local package
+# The code will be mounted into the container by docker-compose, so we can use it as a path repository.
+# The companion package flowpack/neos-whatsneweditor-inmyproject provides the
+# /api/whats-new/in-project endpoint and the WhatsNewDashboardPage node type;
+# ^2.0.1 is the Neos 9 compatible line (2.0.0 is broken on Neos 9: DateTimeImmutable
+# vs DateTime check, empty dimension space point, missing null check).
+composer config repositories.whatsnew-dashboard \
+  '{"type":"path","url":"/app/DistributionPackages/Flowpack.Neos.WhatsNewDashboard","options":{"symlink":true}}' \
+    && composer require --with-all-dependencies \
+      flowpack/neos-whatsnewdashboard:@dev \
+      flowpack/neos-whatsneweditor-inmyproject:^2.0.1
+
+echo "Waiting for database..."
+until mariadb -h"${DB_NEOS_HOST}" -P"${DB_NEOS_PORT}" -u"${DB_NEOS_USER}" -p"${DB_NEOS_PASSWORD}" -D"${DB_NEOS_DATABASE}" --disable-ssl --silent -e "SELECT 1;" 1>/dev/null 2>/dev/null; do
+    sleep 2
+done
+echo "Database is ready."
+
+./flow flow:cache:flush
+
+./flow doctrine:migrate
+
+yes y | ./flow resource:clean || true
+
+./flow cr:setup
+./flow cr:status
+
+# Make the boot idempotent: the DB lives in a persistent named volume, so on a re-boot the event
+# store already holds the demo site and `site:importall` would fail with a ConcurrencyException
+# ("content stream ... already contains events"). Prune first — a harmless no-op on a fresh DB.
+yes y | ./flow site:pruneAll || true
+
+./flow site:importall --package-key Neos.Demo
+
+./flow resource:publish --collection static
+
+frankenphp run --config /etc/frankenphp/Caddyfile

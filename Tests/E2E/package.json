@@ -1,0 +1,23 @@
+{
+  "name": "flowpack-neos-whatsnewdashboard-e2e",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate-tests": "SUT=notRelevantForBddgen FLOW_CONTEXT=notRelevantForBddgen npx bddgen",
+    "test:neos8:defaults": "npm run generate-tests && SUT=neos8 FLOW_CONTEXT=Production/E2E-SUT npx playwright test --grep @default-context",
+    "test:neos8:with-source-url": "npm run generate-tests && SUT=neos8 FLOW_CONTEXT=Production/E2E-SUT/WithSourceUrl npx playwright test --grep @with-source-url",
+    "test:neos8:notification-modal": "npm run generate-tests && SUT=neos8 FLOW_CONTEXT=Production/E2E-SUT npx playwright test --grep @notification-modal",
+    "test:neos9:defaults": "npm run generate-tests && SUT=neos9 FLOW_CONTEXT=Production/E2E-SUT npx playwright test --grep @default-context",
+    "test:neos9:with-source-url": "npm run generate-tests && SUT=neos9 FLOW_CONTEXT=Production/E2E-SUT/WithSourceUrl npx playwright test --grep @with-source-url",
+    "test:neos9:notification-modal": "npm run generate-tests && SUT=neos9 FLOW_CONTEXT=Production/E2E-SUT npx playwright test --grep @notification-modal"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "prettier": "^3.8.4",
+    "typescript": "^6.0.2"
+  },
+  "dependencies": {
+    "@playwright/test": "1.58.2",
+    "playwright-bdd": "8.5.0"
+  }
+}

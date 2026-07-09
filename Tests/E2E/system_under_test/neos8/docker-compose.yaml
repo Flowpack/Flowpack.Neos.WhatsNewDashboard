@@ -1,0 +1,8 @@
+# Explicit project name so containers are `whatsnew-neos8-*` and don't collide
+# with other packages using the same neos8/neos9 SUT folder convention.
+name: whatsnew-neos8
+
+include:
+  - path:
+      - ../sut-base-docker-compose.yaml
+      - ./compose-overrides-neos8.yaml

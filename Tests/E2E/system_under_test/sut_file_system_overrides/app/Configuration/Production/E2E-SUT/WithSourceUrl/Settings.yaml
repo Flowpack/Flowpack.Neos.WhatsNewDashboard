@@ -1,0 +1,7 @@
+Flowpack:
+  Neos:
+    WhatsNewDashboard:
+      # Point the "In your project" iframe at the demo site homepage served by this SUT.
+      # A stable, always-available URL — the tests only assert that the iframe renders
+      # this src and loads content.
+      inProjectSourceUrl: 'http://localhost:8081/'

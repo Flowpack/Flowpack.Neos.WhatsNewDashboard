@@ -1,0 +1,10 @@
+# The Neos.Demo site restricts child documents: 'Neos.Neos:Document' is
+# disallowed and only types carrying the marker supertype
+# 'Neos.Demo:Constraint.Document.SubPage' may be created. Explicitly allow the
+# What's New page type below any demo document (a direct type reference is more
+# specific than the supertype rules and wins the constraint resolution), so the
+# E2E tests can create it through the UI.
+'Neos.Demo:Document':
+  constraints:
+    nodeTypes:
+      'Flowpack.Neos.WhatsNewEditor.InMyProject:Document.WhatsNewDashboardPage': true
