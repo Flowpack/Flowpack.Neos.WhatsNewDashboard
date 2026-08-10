@@ -3,33 +3,40 @@ import React, { useState, useEffect } from 'react'
 import { Dialog, Button } from '@neos-project/react-ui-components'
 
 type ApiData = {
-    clientNotificationTimestamp: string
+    clientNotificationTimestamp: number
 }
 
 const WhatsNewNotificationModal = () => {
     const [showModal, setShowModal] = useState<boolean>(false)
-    const [apiData, setApiData] = useState<ApiData | null>(null);
+    const [apiTimestamp, setApiTimestamp] = useState<number>(0);
 
     // Fetch data from an API
     const fetchData = async () => {
         try {
             const response = await fetch('/api/whats-new/in-project');
-            const data = await response.json();
-            setApiData(data);
+            const data:ApiData = await response.json();
+            setApiTimestamp(data.clientNotificationTimestamp);
         } catch (error) {
             console.error('Error fetching API data:', error);
         }
     };
 
     useEffect(() => {
+        fetchData();
+    }, [])
+
+    useEffect(() => {
+        if (!apiTimestamp) {
+            return;
+        }
         const cookies = Object.fromEntries(document.cookie.split('; ').map(c => c.split('=')));
+        const timestamp = cookies.whatsNewNoteClosedTimestamp ? parseInt(cookies.whatsNewNoteClosedTimestamp) : 0;
+        const currentTime = Date.now();
 
-        !apiData && fetchData();
-
-        if (!cookies.whatsNewNoteClosedTimestamp || (apiData && cookies.whatsNewNoteClosedTimestamp < apiData.clientNotificationTimestamp)) {
+        if (!timestamp || (timestamp < apiTimestamp && currentTime > apiTimestamp)) {
             setShowModal(true)
         }
-    }, [apiData, fetchData])
+    }, [apiTimestamp])
 
     const closeModal = () => {
         const expires = new Date();

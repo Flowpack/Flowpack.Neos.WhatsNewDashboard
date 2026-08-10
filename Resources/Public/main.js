@@ -1,15 +1,2 @@
-"use strict";
-(() => {
-  // main.ts
-  document.addEventListener("DOMContentLoaded", () => {
-    const whatsNewIFrame = document.querySelector("#whatsNewIFrame");
-    if (!whatsNewIFrame) return;
-    const setIFrameHeight = (iFrame) => {
-      if (iFrame.contentWindow && iFrame.contentWindow.document) {
-        iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + 38 + "px";
-      }
-    };
-    whatsNewIFrame.addEventListener("load", () => setIFrameHeight(whatsNewIFrame));
-    window.addEventListener("resize", () => setIFrameHeight(whatsNewIFrame));
-  });
-})();
+"use strict";(()=>{document.addEventListener("DOMContentLoaded",()=>{let e=document.querySelector("#whatsNewIFrame");if(!e)return;let n=t=>{t.contentWindow&&t.contentWindow.document&&(t.style.height=t.contentWindow.document.body.scrollHeight+38+"px")};e.addEventListener("load",()=>n(e)),window.addEventListener("resize",()=>n(e))});})();
+//# sourceMappingURL=main.js.map
